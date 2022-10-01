@@ -1,0 +1,14 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "API system ro run fancy blog. Made to explore Nest.js and friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "vmalyshev0@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.1.2"
+  }
+}
