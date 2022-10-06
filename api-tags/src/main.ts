@@ -1,3 +1,5 @@
+require('dotenv');
+
 import { createLightship } from 'lightship';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -5,7 +7,6 @@ import * as bodyParser from 'body-parser';
 import helmet from 'helmet';
 import * as httpContext from 'express-http-context';
 import * as responseTime from 'response-time';
-
 import { AppModule } from './app.module';
 import { initSwagger } from './common/swagger-init';
 import { HttpExceptionFilter } from './common/http-exception.filter';
@@ -19,15 +20,7 @@ import {
   SHUTDOWN_TIMEOUT,
 } from './common/config';
 
-let logger: ConsoleLogger;
-
-const rawRequestBody = (req: any, _, buf: Buffer, encoding): void => {
-  try {
-    req.bodyRaw = buf.toString(encoding || 'utf8');
-  } catch (e) {
-    logger.error(JSON.stringify(e), 'body:catch');
-  }
-};
+const logger = new ConsoleLogger('Main');
 
 export const initApp = async (): Promise<INestApplication> => {
   const app: INestApplication = await NestFactory.create(AppModule, {
@@ -41,11 +34,7 @@ export const initApp = async (): Promise<INestApplication> => {
   app.enableCors({ exposedHeaders: CORS_HEADERS });
   app.use(helmet());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(
-    bodyParser.json({
-      verify: rawRequestBody,
-    }),
-  );
+  app.use(bodyParser.json());
 
   return app;
 };
@@ -91,16 +80,16 @@ bootstrap()
     logger.log(`Docs available on ${url}${DOCS_PATH}`);
 
     process.on('uncaughtException', (err) => {
-      logger.error(err, 'process:uncaughtException');
+      logger.error('process:uncaughtException', err);
     });
 
     process.on('unhandledRejection', (reason, promise) => {
       logger.error(
-        reason,
         `Unhandled Rejection at: ${promise}, reason: ${reason}`,
+        reason,
       );
     });
   })
   .catch((err) => {
-    logger.error(err, 'Error during startup');
+    logger.error('Error during startup', err);
   });

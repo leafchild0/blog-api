@@ -5,7 +5,7 @@
  */
 
 export const BASE_PATH: string = process.env.BASE_PATH;
-export const DOCS_PATH: string = BASE_PATH + '/docs';
+export const DOCS_PATH: string = BASE_PATH + 'docs';
 export const SHUTDOWN_TIMEOUT = process.env.SHUTDOWN_TIMEOUT || 10000;
 export const PORT = process.env.PORT || 3000;
 export const API_VERSION = process.env.version || '1.0';
