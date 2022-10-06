@@ -1,7 +1,8 @@
-require('dotenv');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({ path: './.env' });
 
 import { createLightship } from 'lightship';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as bodyParser from 'body-parser';
 import helmet from 'helmet';
@@ -11,7 +12,6 @@ import { AppModule } from './app.module';
 import { initSwagger } from './common/swagger-init';
 import { HttpExceptionFilter } from './common/http-exception.filter';
 import { exceptionFactory } from './common/errors';
-import { ConsoleLogger } from '@nestjs/common';
 import {
   BASE_PATH,
   CORS_HEADERS,
@@ -20,7 +20,7 @@ import {
   SHUTDOWN_TIMEOUT,
 } from './common/config';
 
-const logger = new ConsoleLogger('Main');
+const logger = new Logger('Main');
 
 export const initApp = async (): Promise<INestApplication> => {
   const app: INestApplication = await NestFactory.create(AppModule, {
@@ -28,8 +28,6 @@ export const initApp = async (): Promise<INestApplication> => {
     bodyParser: true,
     bufferLogs: true,
   });
-
-  app.useLogger(logger);
 
   app.enableCors({ exposedHeaders: CORS_HEADERS });
   app.use(helmet());

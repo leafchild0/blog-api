@@ -1,6 +1,6 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as fs from 'fs';
-import { API_VERSION } from './config';
+import { API_VERSION, DOCS_PATH } from './config';
 import { INestApplication } from '@nestjs/common';
 
 /**
@@ -31,7 +31,7 @@ export const initSwagger = (app: INestApplication): void => {
     res.json(document);
   });
 
-  SwaggerModule.setup('/docs', app, document, {
+  SwaggerModule.setup(DOCS_PATH, app, document, {
     swaggerOptions: {
       displayOperationId: true,
     },
