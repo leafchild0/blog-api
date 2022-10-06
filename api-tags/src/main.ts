@@ -56,7 +56,7 @@ async function bootstrap(): Promise<string> {
   app.use(httpContext.middleware);
   app.use(responseTime({ header: 'x-response-time' }));
 
-  if (BASE_PATH !== '/') {
+  if (BASE_PATH && BASE_PATH !== '/') {
     app.setGlobalPrefix(BASE_PATH);
   }
 

@@ -34,12 +34,12 @@
     "express-http-context": "^1.2.4",
     "helmet": "^6.0.0",
     "lightship": "^7.0.2",
+    "mongoose": "^6.6.5",
     "reflect-metadata": "^0.1.13",
     "response-time": "^2.3.2",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.5.0",
-    "typeorm": "^0.3.10",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
