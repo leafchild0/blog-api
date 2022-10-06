@@ -26,7 +26,7 @@ export class TagsController {
   })
   @Get('')
   getAllTags(): Promise<TagDto[]> {
-    return this.tagsService.getAllTags();
+    return this.tagsService.getAllTags({});
   }
 
   @ApiOperation({
@@ -57,7 +57,7 @@ export class TagsController {
   updateTagById(
     @Param('id') id: string,
     @Body() tag: UpdateTagInput,
-  ): Promise<TagDto> {
+  ): Promise<void> {
     return this.tagsService.updateTag(id, tag);
   }
 

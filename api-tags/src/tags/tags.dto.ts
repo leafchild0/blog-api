@@ -15,5 +15,13 @@ export class UpdateTagInput {
 export class TagDto {
   name: string;
   description?: string;
-  createAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TagDocument {
+  name: string;
+  description?: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
