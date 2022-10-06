@@ -10,3 +10,4 @@ export const SHUTDOWN_TIMEOUT = process.env.SHUTDOWN_TIMEOUT || 10000;
 export const PORT = process.env.PORT || 3000;
 export const API_VERSION = process.env.version || '1.0';
 export const CORS_HEADERS = process.env.CORS_HEADERS || '';
+export const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017';
