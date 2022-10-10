@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+import { Document } from 'mongoose';
 
 export class CreateTagInput {
   @IsNotEmpty()
@@ -13,15 +14,18 @@ export class UpdateTagInput {
 }
 
 export class TagDto {
+  id: string;
   name: string;
   description?: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface TagDocument {
+export interface TagEntity {
   name: string;
   description?: string;
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface TagDocument extends TagEntity, Document {}

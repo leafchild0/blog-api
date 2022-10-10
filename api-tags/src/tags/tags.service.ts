@@ -45,6 +45,7 @@ export class TagsService {
 
   private convertToDto(t: TagDocument): TagDto {
     return {
+      id: t.id,
       name: t.name,
       description: t.description,
       createdAt: t.createdAt,

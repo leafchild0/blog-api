@@ -23,7 +23,7 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
 
     this.logger.log(err.message, {
       url: request.url,
-      statusCode: response.statusCode,
+      statusCode: error.statusCode,
       headers: request.headers,
     });
 
