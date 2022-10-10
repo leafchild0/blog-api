@@ -34,8 +34,9 @@ export class TagsService {
     return this.convertToDto(created);
   }
 
-  async updateTag(id: string, tag: UpdateTagInput): Promise<void> {
-    await this.clientModel.updateOne({ id }, tag);
+  async updateTag(id: string, tag: UpdateTagInput): Promise<TagDto> {
+    const result = await this.clientModel.findOneAndUpdate({ id }, tag);
+    return this.convertToDto(result);
   }
 
   async deleteTag(id: string): Promise<void> {

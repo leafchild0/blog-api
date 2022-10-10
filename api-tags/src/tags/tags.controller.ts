@@ -26,6 +26,7 @@ export class TagsController {
   })
   @Get('')
   getAllTags(): Promise<TagDto[]> {
+    // Ideally, need to pass filters here, but it's out of the scope of this project
     return this.tagsService.getAllTags({});
   }
 
@@ -57,7 +58,7 @@ export class TagsController {
   updateTagById(
     @Param('id') id: string,
     @Body() tag: UpdateTagInput,
-  ): Promise<void> {
+  ): Promise<TagDto> {
     return this.tagsService.updateTag(id, tag);
   }
 
