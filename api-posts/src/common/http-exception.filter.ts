@@ -21,10 +21,10 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
     const request = host.switchToHttp().getRequest<Request>();
     const error = createGeneralExceptionError(err);
 
-    this.logger.log(err.message, {
+    this.logger.error(error.message, {
       url: request.url,
       statusCode: error.statusCode,
-      headers: request.headers,
+      description: error.description,
     });
 
     response.status(error.statusCode).json(error);
