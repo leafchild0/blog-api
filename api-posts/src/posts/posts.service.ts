@@ -35,7 +35,9 @@ export class PostsService {
   }
 
   async updatePost(id: string, post: UpdatePostInput): Promise<PostDto> {
-    const result = await this.clientModel.findOneAndUpdate({ id }, post);
+    const result = await this.clientModel.findOneAndUpdate({ id }, post, {
+      new: true,
+    });
     return this.convertToDto(result);
   }
 
@@ -47,7 +49,8 @@ export class PostsService {
     return {
       id: t.id,
       name: t.name,
-      description: t.description,
+      body: t.body,
+      tags: t.tags,
       createdAt: t.createdAt,
       updatedAt: t.updatedAt,
     };
