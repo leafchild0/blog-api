@@ -35,7 +35,9 @@ export class TagsService {
   }
 
   async updateTag(id: string, tag: UpdateTagInput): Promise<TagDto> {
-    const result = await this.clientModel.findOneAndUpdate({ id }, tag);
+    const result = await this.clientModel.findOneAndUpdate({ id }, tag, {
+      new: true,
+    });
     return this.convertToDto(result);
   }
 
