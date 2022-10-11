@@ -11,6 +11,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+swagger.json
+coverage
+
 # OS
 .DS_Store
 
