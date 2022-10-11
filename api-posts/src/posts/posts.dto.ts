@@ -14,7 +14,7 @@ export class CreatePostInput {
   @IsOptional({ each: true })
   @IsArray()
   @IsMongoId({ each: true })
-  tags: [];
+  tags?: [];
 }
 
 export class UpdatePostInput {
@@ -25,7 +25,7 @@ export class UpdatePostInput {
   @IsOptional({ each: true })
   @IsArray()
   @IsMongoId({ each: true })
-  tags: [];
+  tags?: [];
 }
 
 export class PostDto {
