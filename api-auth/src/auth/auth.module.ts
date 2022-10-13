@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { SECRET_KEY, TOKEN_EXPIRATION } from '../common/config';
 import { JwtStrategy } from './jwt.strategy';
 import { UsersModule } from '../users/users.module';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from '../users/users.module';
       signOptions: { expiresIn: TOKEN_EXPIRATION },
     }),
   ],
+  controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
