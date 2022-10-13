@@ -15,7 +15,7 @@ const writeSwaggerJson = (path: string, document): void => {
 
 export const initSwagger = (app: INestApplication): void => {
   const options = new DocumentBuilder()
-    .setTitle('Connect API')
+    .setTitle('Blog API')
     .setDescription(
       'Swagger specification for api-posts | [swagger.json](swagger.json)',
     )

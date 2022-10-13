@@ -17,7 +17,7 @@ export const initSwagger = (app: INestApplication): void => {
   const options = new DocumentBuilder()
     .setTitle('Blog API')
     .setDescription(
-      'Swagger specification for api-tags | [swagger.json](swagger.json)',
+      'Swagger specification for api-auth | [swagger.json](swagger.json)',
     )
     .setVersion(API_VERSION)
     .addBearerAuth({ type: 'apiKey', name: 'access-token', in: 'header' })
@@ -35,6 +35,6 @@ export const initSwagger = (app: INestApplication): void => {
     swaggerOptions: {
       displayOperationId: true,
     },
-    customSiteTitle: 'Blog tags API',
+    customSiteTitle: 'Blog auth API',
   });
 };

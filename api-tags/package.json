@@ -1,10 +1,10 @@
 {
   "name": "api-tags",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API tp manage tags",
+  "author": "leafchild0",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
