@@ -1,8 +1,9 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Response } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginInput, SignUpInput, TokenPayload } from './auth.dto';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UserDto } from '../users/users.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -27,5 +28,17 @@ export class AuthController {
   @Post('signup')
   async signUp(@Body() input: SignUpInput): Promise<UserDto> {
     return this.authService.signUp(input);
+  }
+
+  @ApiOperation({
+    operationId: 'authorize',
+    description: 'Verify user token and user',
+  })
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Post('authorize')
+  async authorize(@Response() res): Promise<void> {
+    // Since guard does all stuff, simply return 200
+    return res.status(200).send();
   }
 }
