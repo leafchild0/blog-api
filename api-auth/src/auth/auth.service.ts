@@ -12,8 +12,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUserPassword(password: string, pass: string): Promise<void> {
-    const isPassSame = compareSync(pass, password);
+  async validateUserPassword(password: string, hashed: string): Promise<void> {
+    const isPassSame = compareSync(password, hashed);
     if (!isPassSame) {
       throw new UnauthorizedException("Password don't match");
     }
