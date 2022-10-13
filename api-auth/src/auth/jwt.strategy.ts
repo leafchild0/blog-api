@@ -7,7 +7,7 @@ import { SECRET_KEY } from '../common/config';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromHeader('access-token'),
       ignoreExpiration: false,
       secretOrKey: SECRET_KEY,
     });
