@@ -6,10 +6,12 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateTagInput, TagDto, UpdateTagInput } from './tags.dto';
+import { AuthGuard } from '../common/auth.guard';
 
 /**
  * Main controller for tags
@@ -17,6 +19,7 @@ import { CreateTagInput, TagDto, UpdateTagInput } from './tags.dto';
 @Controller('tags')
 @ApiTags('tags')
 @ApiBearerAuth()
+@UseGuards(AuthGuard)
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 

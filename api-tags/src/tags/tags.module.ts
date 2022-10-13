@@ -4,9 +4,10 @@ import { TagsService } from './tags.service';
 import { ConfigModule } from '@nestjs/config';
 import { tagsProviders } from './tags.provider';
 import { DbModule } from '../db/db.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [ConfigModule.forRoot(), DbModule],
+  imports: [ConfigModule.forRoot(), DbModule, HttpModule],
   controllers: [TagsController],
   providers: [...tagsProviders, TagsService],
 })
