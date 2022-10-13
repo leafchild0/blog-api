@@ -6,10 +6,12 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreatePostInput, PostDto, UpdatePostInput } from './posts.dto';
+import { AuthGuard } from '../common/auth.guard';
 
 /**
  * Main controller for posts
@@ -17,6 +19,7 @@ import { CreatePostInput, PostDto, UpdatePostInput } from './posts.dto';
 @Controller('posts')
 @ApiTags('posts')
 @ApiBearerAuth()
+@UseGuards(AuthGuard)
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
