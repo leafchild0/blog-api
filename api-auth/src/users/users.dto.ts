@@ -1,4 +1,4 @@
-import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -8,6 +8,7 @@ export class CreateUserInput {
   @IsNotEmpty()
   password: string;
   @IsNotEmpty()
+  @IsEmail()
   email: string;
   @IsOptional()
   roles?: string[];
@@ -16,7 +17,7 @@ export class CreateUserInput {
 export class UpdateUserInput {
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
+  @IsEmail()
   email: string;
   @IsOptional()
   @IsArray()
