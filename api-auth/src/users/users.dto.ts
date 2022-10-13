@@ -37,6 +37,7 @@ export class UserDto {
 export interface UserEntity {
   name: string;
   email: string;
+  password: string;
   roles: string[];
   createdAt: Date;
   updatedAt: Date;

@@ -33,6 +33,15 @@ export class UsersService {
     return this.convertToDto(user);
   }
 
+  async getUserByUsername(name: string): Promise<UserDocument> {
+    const user = await this.clientModel.findOne({ name });
+
+    if (!user) {
+      throw new NotFoundException(`User with name=${name} not found`);
+    }
+    return user;
+  }
+
   async createUser(user: CreateUserInput): Promise<UserDto> {
     const created = await this.clientModel.create(user);
     return this.convertToDto(created);
