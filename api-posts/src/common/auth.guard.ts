@@ -6,6 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+import { AUTH_URI } from './config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -23,10 +24,9 @@ export class AuthGuard implements CanActivate {
   }
 
   private async validateRequestToken(token: string): Promise<boolean> {
-    const host = 'http://localhost:3003';
     try {
       const res = await this.httpService
-        .post(`${host + '/api-auth/auth/authorize'}`, null, {
+        .post(`${AUTH_URI + '/api-auth/auth/authorize'}`, null, {
           headers: {
             'access-token': token,
           },
